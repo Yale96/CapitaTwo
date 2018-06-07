@@ -5,7 +5,10 @@
  */
 package com.servicetwo.controller;
 
+import com.servicetwo.entity.request.SubjectRequest;
+import com.servicetwo.entitys.Subject;
 import com.servicetwo.repository.SubjectRepository;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,25 +26,24 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("subjects")
 public class SubjectController {
     
-    private SubjectRepository subjectController;
+    private SubjectRepository subjectRepository;
+    private SubjectRequest subjectRequest; 
     
     @Autowired
-    public SubjectController(SubjectRepository subjectController){
-        this.subjectController = subjectController;
+    public SubjectController(SubjectRepository subjectRepository){
+        this.subjectRepository = subjectRepository;
+        subjectRequest = new SubjectRequest();
+    }
+    
+    // TEST URL: http://localhost:8092/subjects
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Subject> findAllSubjects() {
+        return subjectRepository.findAll();
     }
     
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public void getAllFromOne() {
-        RestTemplate restTemplate = new RestTemplate();
-        List<LinkedHashMap<String, Object>> subjectsMap = restTemplate.getForObject("http://localhost:8090/subjects", List.class);
-
-        if (subjectsMap != null) {
-            for (LinkedHashMap<String, Object> map : subjectsMap) {
-                System.out.println("Subject : naam=" + map.get("naam"));
-            }
-        } else {
-            System.out.println("No user exist----------");
-        }
+    public List<Subject> getAllFromOne() {
+        return subjectRequest.getAllFromOne();
     }
     
 }
