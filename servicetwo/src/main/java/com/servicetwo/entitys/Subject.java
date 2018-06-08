@@ -28,6 +28,9 @@ public class Subject implements Serializable {
     private String naam;
     
     @NotNull
+    private int ageLimit;
+    
+    @NotNull
     private String omschrijving;
     
     public Subject()
@@ -35,10 +38,11 @@ public class Subject implements Serializable {
         
     }
     
-    public Subject(String naam, String omschrijving)
+    public Subject(String naam, String omschrijving, int age)
     {
         this.naam = naam;
         this.omschrijving = omschrijving;
+        this.ageLimit = age;
     }
 
     public long getId() {
@@ -49,6 +53,14 @@ public class Subject implements Serializable {
         this.id = id;
     }
 
+    public int getAgeLimit() {
+        return ageLimit;
+    }
+
+    public void setAgeLimit(int ageLimit) {
+        this.ageLimit = ageLimit;
+    }
+    
     public String getNaam() {
         return naam;
     }

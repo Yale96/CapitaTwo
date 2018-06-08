@@ -36,7 +36,8 @@ public class SubjectRequest {
                 System.out.println("Subject : naam=" + map.get("naam"));
                 String omschrijving = map.get("omschrijving").toString();
                 String naam = map.get("naam").toString();
-                Subject s = new Subject(naam, omschrijving);
+                int ageLimit = (int) map.get("ageLimit");
+                Subject s = new Subject(naam, omschrijving, ageLimit);
                 returnList.add(s);
             }
         } else {

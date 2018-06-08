@@ -6,6 +6,7 @@
 package com.servicetwo.controller;
 
 import com.servicetwo.entity.request.SubjectRequest;
+import com.servicetwo.entity.request.UserRequest;
 import com.servicetwo.entitys.Subject;
 import com.servicetwo.repository.SubjectRepository;
 import java.util.ArrayList;
@@ -25,25 +26,32 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("subjects")
 public class SubjectController {
-    
+
     private SubjectRepository subjectRepository;
-    private SubjectRequest subjectRequest; 
-    
+    private SubjectRequest subjectRequest;
+    private UserRequest userRequest;
+
     @Autowired
-    public SubjectController(SubjectRepository subjectRepository){
+    public SubjectController(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
         subjectRequest = new SubjectRequest();
+        userRequest = new UserRequest();
     }
-    
+
     // TEST URL: http://localhost:8092/subjects
     @RequestMapping(method = RequestMethod.GET)
     public List<Subject> findAllSubjects() {
         return subjectRepository.findAll();
     }
-    
+
+    // TEST URL: http://localhost:8092/subjects/getAll
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public List<Subject> getAllFromOne() {
-        return subjectRequest.getAllFromOne();
+        return subjectRepository.findAll();
     }
-    
+
+    @RequestMapping(value = "/getAllByName", method = RequestMethod.GET)
+    public List<Subject> getAllFromOneByName(@RequestParam("naam") String naam) {
+        return userRequest.getAllSubjectsPerUserFromOne(naam);
+    }
 }
