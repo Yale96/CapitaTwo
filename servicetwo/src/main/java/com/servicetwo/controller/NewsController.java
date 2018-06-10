@@ -40,13 +40,13 @@ public class NewsController {
     
     //TEST URL: http://localhost:8092/news/findNewsBySubject?naam=Twee
     @RequestMapping(value = "/findNewsBySubject", method = RequestMethod.GET)
-    public List<String> findNewsBySubject(@RequestParam("naam") String naam) {
+    public List<News> findNewsBySubject(@RequestParam("naam") String naam) {
         return newsRepository.findNewsBySubject(naam);
     }
     
-    //TEST URL: http://localhost:8092/news/findNewsByTitle?titel=Twee in het nieuws
+    //TEST URL: http://localhost:8092/news/findNewsByTitle?id=1titel=Twee in het nieuws
     @RequestMapping(value = "/findNewsByTitle", method = RequestMethod.GET)
-    public News findNewsByTitle(@RequestParam("titel") String titel) {
-        return newsRepository.findNewsByTitle(titel);
+    public News findNewsByTitle(@RequestParam("id") long id) {
+        return newsRepository.findNewsByTitle(id);
     }
 }

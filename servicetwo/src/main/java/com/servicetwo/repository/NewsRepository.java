@@ -17,9 +17,9 @@ import org.springframework.data.repository.query.Param;
  * @author Yannick van Leeuwen
  */
 public interface NewsRepository extends JpaRepository<News, Long> {
-     @Query("SELECT n.titel FROM News n WHERE LOWER(n.subject.naam) = LOWER(:naam)")
-    public List<String> findNewsBySubject(@Param("naam") String naam);
+     @Query("SELECT n FROM News n WHERE LOWER(n.subject.naam) = LOWER(:naam)")
+    public List<News> findNewsBySubject(@Param("naam") String naam);
     
-    @Query("SELECT n FROM News n WHERE LOWER(n.titel) = LOWER(:titel)")
-    public News findNewsByTitle(@Param("titel") String titel);
+    @Query("SELECT n FROM News n WHERE n.id = :id")
+    public News findNewsByTitle(@Param("id") long id);
 }
