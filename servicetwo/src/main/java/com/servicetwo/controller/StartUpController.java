@@ -79,7 +79,6 @@ public class StartUpController {
             News n = new News();
             n.setTitel(s.getNaam() + " in het nieuws");
             n.setContent(s.getNaam() + " heel mooi contentje dit.");
-            n.setAgeLimit(0);
             n.setSubject(s);
             newsRepository.save(n);
         }

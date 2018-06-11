@@ -47,7 +47,7 @@ public class UserController {
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
-
+    
     // TEST URL: http://localhost:8092/users/getAllByName?naam=Yannick
     @RequestMapping(value = "/getAllByName", method = RequestMethod.GET)
     public List<String> getAllFromOneByName(@RequestParam("naam") String naam) {

@@ -29,9 +29,6 @@ public class News implements Serializable {
     private String content;
     
     @NotNull
-    private int ageLimit;
-    
-    @NotNull
     @OneToOne
     private Subject subject;
     
@@ -43,10 +40,10 @@ public class News implements Serializable {
         followers = new ArrayList<>();
     }
     
-    public News(String titel, String content, int ageLimit, Subject subject)
+    public News(String titel, String content, Subject subject)
     {
+        this.titel = titel;
         this.content = content;
-        this.ageLimit = ageLimit;
         this.subject = subject;
     }
 
@@ -72,14 +69,6 @@ public class News implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getAgeLimit() {
-        return ageLimit;
-    }
-
-    public void setAgeLimit(int ageLimit) {
-        this.ageLimit = ageLimit;
     }
 
     public Subject getSubject() {
